@@ -1,0 +1,8 @@
+//
+// Created by rafael on 13/02/2022.
+//
+
+#include "Problema.h"
+
+void Problema::go() {
+    construir();
