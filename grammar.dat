@@ -1,4 +1,3 @@
-<bigInit> ::= int i = 0 ; while(i<100){ <do> i ++ ; }
 <do> ::= <pert> | <ref> | <do> <do>
 <pert> ::= swap( <cons> , <cons> ) ; | repart( <sigOp> <cons> ) ; | shake( <cons> ) ; | rec( <cons> ) ;
 <ref> ::= RVND() ; | bL1() ; | bL2() ; | bL3() ; | bL4() ; | blPc() ;

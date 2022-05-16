@@ -5,10 +5,16 @@
 #include "Problema.h"
 
 void Problema::go() {
-    construir(); int i =0 ;
- while(i<100){ swap(8 ,9 ) ;
- i ++ ;
- }
+    construir();
+    for(int i=0;i<100; i++){
+     bL4() ;
+ rec(1 ) ;
+ RVND() ;
+ swap(1 ,0 ) ;
+ repart( -4 ) ;
+ repart( -7 ) ;
+ blPc() ;
+}
 }
 
 Problema::Problema(int qtdSalas) {
@@ -130,7 +136,7 @@ void Problema::repart(int fator) {
 void Problema::shake(int tam) {
     if(tam<this->n){
 
-        for(int i=0;i<this->n;i++){
+        for(int i=0;i<tam;i++){
             int j=rand()%this->n;
             int k=rand()%this->n;
             while(k==j){
