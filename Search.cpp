@@ -59,7 +59,9 @@ void Search::evolve() {
         operate();
 
         evaluatePopulation(this->conf->popSize,this->conf->popSize*2);
+
         stable_sort(this->pop + this->conf->popSize, this->pop +this-> conf->popSize * 2, sortPopulationFitness);
+
 
         replace();
         stable_sort(this->pop, this->pop + this->conf->popSize * 2, sortPopulationFitness);
@@ -75,6 +77,11 @@ void Search::evolve() {
 
 }
 
+void Search::replace() {
+    for(int i = this->conf->popSize * this->conf->elitism, j = 0; i < this->conf->popSize; i++, j++) {
+        swap(this->pop[i], this->pop[this->conf->popSize + j]);
+    }
+}
 //Realização de cruamemento e mutação
 void Search::operate() {
     int numIndividuos=this->conf->numIndividuosSelection;
@@ -99,11 +106,6 @@ void Search::operate() {
     }
 
 
-}
-void Search::replace() {
-    for(int i = this->conf->popSize * this->conf->elitism, j = 0; i < this->conf->popSize; i++, j++) {
-        swap(this->pop[i], this->pop[this->conf->popSize + j]);
-    }
 }
 //Operação de mutação
 void Search::mutate(Subject **selecionados) {

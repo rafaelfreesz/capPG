@@ -8,7 +8,7 @@ Tree::Tree(Configures* conf, Grammar* grammar) {
     this->conf=conf;
     this->grammar=grammar;
 
-    No* n = new No(-1, 0, "<bigInit>",0);
+    No* n = new No(-1, 0, "<do>",0);
 
     if(rand()%2==0){
         this->grammar->derivate(n);

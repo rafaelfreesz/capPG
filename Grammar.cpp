@@ -82,8 +82,8 @@ Grammar::~Grammar() {
 void Grammar::makeTerminals() {
     //0
     vector<string> constants;
-    for(int i=0;i<=10;i++) {
-        constants.push_back(to_string(i));
+    for(int i=0;i<=100;i++) {
+        constants.push_back(to_string(0.01*i));
     }
     terminals.push_back(constants);
 

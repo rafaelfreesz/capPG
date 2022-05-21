@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <ctime>
+#include "cmath"
 #include "Sala.h"
 using namespace std;
 
@@ -40,7 +41,7 @@ public:
     void bL4();
     void blPc();
 
-
+    int giveMeIndex(float value);
 
     void bLFase1(bool* melhorado);
     void bLFase2(bool* melhorado);

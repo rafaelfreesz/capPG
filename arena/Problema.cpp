@@ -7,8 +7,9 @@
 void Problema::go() {
     construir();
     for(int i=0;i<100; i++){
-     shake(4 ) ;
+     bL2() ;
 }
+
 }
 
 Problema::Problema(int qtdSalas) {
@@ -261,15 +262,15 @@ void Problema::bLFase3(bool *melhorado) {
     float melhorSolucao=this->funcaoObjetivo;
     for(int i=0;i<this->particao;i++){
         for(int j=this->particao;j<this->n;j++){
-                swap(i, j);
+            swap(i, j);
 
-                if (this->funcaoObjetivo < melhorSolucao) {
-                    *melhorado = true;
-                    return;
-                } else {
-                    swap(i, j);
-                    this->funcaoObjetivo=melhorSolucao;
-                }
+            if (this->funcaoObjetivo < melhorSolucao) {
+                *melhorado = true;
+                return;
+            } else {
+                swap(i, j);
+                this->funcaoObjetivo=melhorSolucao;
+            }
         }
     }
 }
@@ -302,29 +303,29 @@ void Problema::bLFase4(bool *melhorado) {
 
 
 
-        for (int i = this->particao; i < this->n; i++) {
-            int salaI = this->corredorSolucao[i];
-            int comprimentoI = this->vetorDeSalas[salaI]->getComprimento();
+    for (int i = this->particao; i < this->n; i++) {
+        int salaI = this->corredorSolucao[i];
+        int comprimentoI = this->vetorDeSalas[salaI]->getComprimento();
 
-            // if ((this->comprimentoD - comprimentoI) >= this->comprimentoE) {
-            this->particao++;
-            swap(i, this->particao - 1);
+        // if ((this->comprimentoD - comprimentoI) >= this->comprimentoE) {
+        this->particao++;
+        swap(i, this->particao - 1);
 
+        if (this->funcaoObjetivo < melhorSolucao) {
+            *melhorado = true;
+            return;
+        }
+
+        for (int j = this->particao - 1; j > 0; j--) {
+            swap(j, j - 1);
             if (this->funcaoObjetivo < melhorSolucao) {
                 *melhorado = true;
                 return;
             }
-
-            for (int j = this->particao - 1; j > 0; j--) {
-                swap(j, j - 1);
-                if (this->funcaoObjetivo < melhorSolucao) {
-                    *melhorado = true;
-                    return;
-                }
-            }
-            this->particao--;
-            insert(0, i);
         }
+        this->particao--;
+        insert(0, i);
+    }
 
 }
 
@@ -538,4 +539,8 @@ void Problema::rec(int tam) {
         calcularSolucao();
         delete[] desconstruidas;
     }
+}
+
+int Problema::giveMeIndex(float value) {
+    return floor(this->n*value);
 }
