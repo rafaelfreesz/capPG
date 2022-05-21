@@ -1,5 +1,4 @@
 }
-
 }
 
 Problema::Problema(int qtdSalas) {
@@ -104,24 +103,29 @@ void Problema::imprimirCorredor() {
 }
 //-------------operacoes---------------//
 
-void Problema::swap(int i, int j) {
-    if(i<this->n && j<this->n) {
+void Problema::swap(float iF, float jF) {
+    int i= giveMeIndex(iF);
+    int j= giveMeIndex(jF);
+    if(i < this->n && j < this->n) {
         int aux = this->corredorSolucao[i];
         this->corredorSolucao[i] = this->corredorSolucao[j];
         this->corredorSolucao[j] = aux;
         calcularSolucao();
     }
 }
-void Problema::repart(int fator) {
-    if((this->particao+fator)<this->n && (this->particao+fator)>0) {
+void Problema::repart(float fatorF) {
+    int fator= giveMeIndex(fatorF);
+    if((this->particao + fator) < this->n && (this->particao + fator) > 0) {
         this->particao += fator;
         calcularSolucao();
     }
 }
-void Problema::shake(int tam) {
-    if(tam<this->n){
+void Problema::shake(float tamF) {
 
-        for(int i=0;i<tam;i++){
+    int tam= giveMeIndex(tamF);
+    if(tam < this->n){
+
+        for(int i=0; i < tam; i++){
             int j=rand()%this->n;
             int k=rand()%this->n;
             while(k==j){
@@ -132,7 +136,37 @@ void Problema::shake(int tam) {
         calcularSolucao();
     }
 }
+void Problema::rec(float tamF){
+    int tam= giveMeIndex(tamF);
 
+    if(tam<this->n) {
+        int *desconstruidas = new int[tam];
+
+        for (int i = 0; i < tam; i++) {
+            int j = rand() % this->n;
+            desconstruidas[i] = this->corredorSolucao[j];
+
+            this->n--;
+
+            for (int k = j; k < this->n; k++) {
+                this->corredorSolucao[k] = this->corredorSolucao[k + 1];
+            }
+
+            if (j < this->particao) {
+                this->particao--;
+            }
+            calcularSolucao();
+        }
+
+        for (int i = 0; i < tam; i++) {
+            this->corredorSolucao[this->n] = desconstruidas[i];
+            this->n++;
+        }
+
+        calcularSolucao();
+        delete[] desconstruidas;
+    }
+}
 void Problema::RVND() {
     bool melhorado=true;
 
@@ -499,36 +533,6 @@ void Problema::blPc() {
         }
     }
 
-}
-
-void Problema::rec(int tam) {
-    if(tam<this->n) {
-        int *desconstruidas = new int[tam];
-
-        for (int i = 0; i < tam; i++) {
-            int j = rand() % this->n;
-            desconstruidas[i] = this->corredorSolucao[j];
-
-            this->n--;
-
-            for (int k = j; k < this->n; k++) {
-                this->corredorSolucao[k] = this->corredorSolucao[k + 1];
-            }
-
-            if (j < this->particao) {
-                this->particao--;
-            }
-            calcularSolucao();
-        }
-
-        for (int i = 0; i < tam; i++) {
-            this->corredorSolucao[this->n] = desconstruidas[i];
-            this->n++;
-        }
-
-        calcularSolucao();
-        delete[] desconstruidas;
-    }
 }
 
 int Problema::giveMeIndex(float value) {

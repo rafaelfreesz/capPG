@@ -6,6 +6,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+
     string instNome =string(argv[1]);
 
     Entrada *instancia = new Entrada("./Instancias/"+instNome);

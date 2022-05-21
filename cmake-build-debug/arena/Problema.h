@@ -27,10 +27,10 @@ public:
 
     //operacoes//
     //pert//
-    void swap(int i,int j);
-    void repart(int fator);
-    void shake (int tam);
-    void rec(int tam);
+    void swap(float iF, float jF);
+    void repart(float fatorF);
+    void shake (float tamF);
+    void rec(float tam);
 
     void insert(int iOrigem, int iDestino);
     //ref//

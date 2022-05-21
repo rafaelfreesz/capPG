@@ -16,7 +16,7 @@ Search::Search(Parser *parser, int *populationReplacement, Configures *conf, Gra
 Search::~Search() {
 
 }
-void Search::saveGeneration(int gen) {
+void Search::exportGeneration(int gen) {
     string command="cp -r ./Population ./Generations/"+to_string(gen);
     system(command.c_str());
 }
@@ -46,7 +46,7 @@ void Search::evolve() {
     stable_sort(this->pop,this->pop+conf->popSize,sortPopulationFitness);
 
     cout<<"--------População Inicial Criada."<<endl;
-    saveGeneration(0);
+    exportGeneration(0);
     relEnd->imprimirResultado(this->pop, this->conf->popSize, 0, this->conf->genSeed);
 
     conf->optimizationEvaluations=100;
@@ -71,15 +71,15 @@ void Search::evolve() {
         }
 
         cout<<"--------Fim da Geração "+to_string(it)+"."<<endl<<endl;
-        saveGeneration(it);
+        exportGeneration(it);
         relEnd->imprimirResultado(this->pop, this->conf->popSize, it, this->conf->genSeed);
     }
 
 }
 
 void Search::replace() {
-    for(int i = this->conf->popSize * this->conf->elitism, j = 0; i < this->conf->popSize; i++, j++) {
-        swap(this->pop[i], this->pop[this->conf->popSize + j]);
+    for(int i = this->conf->popSize * this->conf->elitism, j = this->conf->popSize; i < this->conf->popSize; i++, j++) {
+        swap(this->pop[i], this->pop[j]);
     }
 }
 //Realização de cruamemento e mutação

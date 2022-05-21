@@ -36,7 +36,7 @@ public:
     void mutate(Subject** selecionados);
     void auxMutate(Tree* t);
 
-    void saveGeneration(int gen);
+    void exportGeneration(int gen);
 
     void tokenize(string str, vector<string> &token_v, string DELIMITER);
 
