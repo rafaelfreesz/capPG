@@ -1,0 +1,5 @@
+cp ./Population/gpAgent0.cpp ./arena/Problema.cpp
+rm arena/Saidas/Resultados
+cd ./arena; g++ *.cpp -O3; ./a.out S9 151508
+cd ./arena; g++ *.cpp -O3; ./a.out S9H 151508
+cd ./arena; g++ *.cpp -O3; ./a.out S10 151508

@@ -1,0 +1,55 @@
+cp ./Population/gpAgent0.cpp ./arena/Problema.cpp
+rm arena/Saidas/Resultados
+cd ./arena; g++ *.cpp -O3; ./a.out S9 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S9H 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S10 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S11 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am15 14218
+cp ./Population/gpAgent1.cpp ./arena/Problema.cpp
+rm arena/Saidas/Resultados
+cd ./arena; g++ *.cpp -O3; ./a.out S9 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S9H 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S10 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S11 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am15 14218
+cp ./Population/gpAgent2.cpp ./arena/Problema.cpp
+rm arena/Saidas/Resultados
+cd ./arena; g++ *.cpp -O3; ./a.out S9 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S9H 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S10 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S11 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am15 14218
+cp ./Population/gpAgent3.cpp ./arena/Problema.cpp
+rm arena/Saidas/Resultados
+cd ./arena; g++ *.cpp -O3; ./a.out S9 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S9H 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S10 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S11 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am15 14218
+cp ./Population/gpAgent4.cpp ./arena/Problema.cpp
+rm arena/Saidas/Resultados
+cd ./arena; g++ *.cpp -O3; ./a.out S9 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S9H 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S10 14218
+cd ./arena; g++ *.cpp -O3; ./a.out S11 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am12b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13a 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am13b 14218
+cd ./arena; g++ *.cpp -O3; ./a.out Am15 14218

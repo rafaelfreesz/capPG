@@ -10,11 +10,12 @@ Search::Search(Parser *parser, int *populationReplacement, Configures *conf, Gra
     this->conf=conf;
     this->grammar=grammar;
     this->instances=new Instances();
+    this->logFile=new Saida("logFile");
 
 }
 
 Search::~Search() {
-
+    delete this->logFile;
 }
 void Search::exportGeneration(int gen) {
     string command="cp -r ./Population ./Generations/"+to_string(gen);
@@ -183,7 +184,6 @@ void Search::createInicialPopulation() {
 //Avalia a população
 void Search::evaluatePopulation(int initialIndex, int finalIndex) {
 
-
     //Gerando os arquivos dos individuos, para que possam ser compilados
     for(int i=initialIndex;i<finalIndex;i++){
         this->pop[i]->subjectName="gpAgent"+ to_string(i);
@@ -200,10 +200,12 @@ void Search::evaluatePopulation(int initialIndex, int finalIndex) {
         //Levando o individuo para arena com nome Problema.cpp
         this->conf->evaluations++;
         execStr="cp ./Population/gpAgent" + to_string(i) +".cpp ./arena/Problema.cpp"; //Copiando pra Arena
+        this->logFile->escreverLinha(execStr);
         system(execStr.c_str());
 
         //Removendo o arquivo Resultados
         execStr="rm arena/Saidas/Resultados";
+        this->logFile->escreverLinha(execStr);
         system(execStr.c_str());
 
         execute();
@@ -219,6 +221,7 @@ void Search::execute() const {
 
     for(int i=0;i<this->instances->n;i++){
         execStr="cd ./arena; g++ *.cpp -O3; ./a.out "+this->instances->names.at(i) +" "+to_string(this->conf->genSeed);
+        this->logFile->escreverLinha(execStr);
         system(execStr.c_str());
     }
 }

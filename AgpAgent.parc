@@ -1,10 +1,17 @@
 //
-// Created by rafael on 13/02/2022.
+// Created by rafael on 13/05/22.
 //
-
 #include "Problema.h"
 
 void Problema::go() {
     construir();
+    float melhorObjetivo=this->funcaoObjetivo;
+    int melhorParticao=this->particao;
+    int* melhorCorredor=new int[this->n];
+
+    for(int i=0;i<this->n;i++){
+        melhorCorredor[i]=this->corredorSolucao[i];
+    }
     for(int i=0;i<100; i++){
-    
+        //begin cod
+        

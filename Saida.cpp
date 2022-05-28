@@ -28,3 +28,7 @@ void Saida::imprimirResultado(Subject **pop, int popSize, int generation, int se
     }
     this->saida<<endl;
 }
+
+void Saida::escreverLinha(string linha) {
+    this->saida<<linha<<endl;
+}

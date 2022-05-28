@@ -16,6 +16,7 @@ public:
     void abrirArquivo();
     void fecharArquivo();
     void imprimirResultado(Subject **pop, int popSize, int generation, int seed);
+    void escreverLinha(string linha);
 
 private:
     string arquivo;

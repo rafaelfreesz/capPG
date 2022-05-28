@@ -12,7 +12,7 @@ buildGpConfig(int maxDeep, int generation, int popSize, double crossoverRate, do
 
 int main(int argc, char** argv) {
     srand(clock());
-    Configures* conf = buildGpConfig(10, 500, 50, 0.9, 0.1, 0.05, 2);
+    Configures* conf = buildGpConfig(10, 500, 100, 0.9, 0.1, 0.05, 2);
 
     Grammar* grammar=new Grammar("grammar.dat",conf);
 

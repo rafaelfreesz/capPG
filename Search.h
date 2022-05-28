@@ -50,6 +50,7 @@ public:
     Configures* conf;
     Grammar* grammar;
     Instances* instances;
+    Saida* logFile;
 
 };
 

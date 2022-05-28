@@ -24,6 +24,7 @@ public:
     void calcularCusto();
     void resetarProblema();
     void construir();
+    void swapIndex(int i, int j);
 
     //operacoes//
     //pert//
