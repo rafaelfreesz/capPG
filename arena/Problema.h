@@ -54,6 +54,7 @@ public:
     int** matrizDeTrafego;
     int* corredorSolucao;
     float* abcissas;
+    int* desconstruidas;
 
     int n;
     int particao;

@@ -18,10 +18,21 @@ Search::~Search() {
     delete this->logFile;
 }
 void Search::exportGeneration(int gen) {
-    string command="cp -r ./Population ./Generations/"+to_string(gen);
-    system(command.c_str());
+    this->command="cp -r ./Population ./Generations/"+to_string(gen);
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="cp -r ./arena/Saidas ./Generations/"+to_string(gen)+"/Resultados";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="rm ./arena/Saidas/*";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
 }
 void Search::evolve() {
+    preparePaths();
 
     ifstream File;
     File.open("AgpAgent.parc");
@@ -42,7 +53,7 @@ void Search::evolve() {
 
     cout<<"-------Criando população inicial"<<endl;
     this->createInicialPopulation();
-    evaluatePopulation(0,this->conf->popSize);
+    evaluatePopulation(0, this->conf->popSize, 0);
 
     stable_sort(this->pop,this->pop+conf->popSize,sortPopulationFitness);
 
@@ -53,13 +64,13 @@ void Search::evolve() {
     conf->optimizationEvaluations=100;
 
     cout<<"Iniciando gerações:"<<endl;
-    for(int it=1; it<this->conf->evaluations;it++){
+    for(int it=1; it<this->conf->generations; it++){
         this->conf->genSeed=clock();
         cout<<"--------Geração "+to_string(it)+", Semente: "+to_string(this->conf->genSeed)+" :"<<endl;
 
         operate();
 
-        evaluatePopulation(this->conf->popSize,this->conf->popSize*2);
+        evaluatePopulation(this->conf->popSize, this->conf->popSize * 2, it);
 
         stable_sort(this->pop + this->conf->popSize, this->pop +this-> conf->popSize * 2, sortPopulationFitness);
 
@@ -76,6 +87,7 @@ void Search::evolve() {
         relEnd->imprimirResultado(this->pop, this->conf->popSize, it, this->conf->genSeed);
     }
 
+    exportFinalResults();
 }
 
 void Search::replace() {
@@ -182,7 +194,7 @@ void Search::createInicialPopulation() {
     }
 }
 //Avalia a população
-void Search::evaluatePopulation(int initialIndex, int finalIndex) {
+void Search::evaluatePopulation(int initialIndex, int finalIndex, int generation) {
 
     //Gerando os arquivos dos individuos, para que possam ser compilados
     for(int i=initialIndex;i<finalIndex;i++){
@@ -194,39 +206,38 @@ void Search::evaluatePopulation(int initialIndex, int finalIndex) {
 
     this->conf->genSeed=clock();
     //Executando
-    string execStr;
     for(int i=initialIndex;i<finalIndex;i++){
         cout<<"gpAgent"+to_string(i)<<", ";
         //Levando o individuo para arena com nome Problema.cpp
-        this->conf->evaluations++;
-        execStr="cp ./Population/gpAgent" + to_string(i) +".cpp ./arena/Problema.cpp"; //Copiando pra Arena
-        this->logFile->escreverLinha(execStr);
-        system(execStr.c_str());
+        //this->conf->evaluations++;
+        this->command="cp ./Population/gpAgent" + to_string(i) +".cpp ./arena/Problema.cpp"; //Copiando pra Arena
+        this->logFile->escreverLinha(this->command);
+        this->sysRet=system(this->command.c_str());
 
-        //Removendo o arquivo Resultados
-        execStr="rm arena/Saidas/Resultados";
-        this->logFile->escreverLinha(execStr);
-        system(execStr.c_str());
 
-        execute();
         //Lendo o score
         evaluateIndividual(i);
         cout<<"fitness: "+to_string(this->pop[i]->fitness)<<endl;
+        
+        //Salvando resultados do individuo
+        this->command="mv ./arena/Saidas/Resultados ./arena/Saidas/Res_gpAgent"+to_string(i);
+        this->logFile->escreverLinha(this->command);
+        this->sysRet=system(this->command.c_str());
     }
 
 
 }
-void Search::execute() const {
-    string execStr;
+void Search::execute(){
 
     for(int i=0;i<this->instances->n;i++){
-        execStr="cd ./arena; g++ *.cpp -O3; ./a.out "+this->instances->names.at(i) +" "+to_string(this->conf->genSeed);
-        this->logFile->escreverLinha(execStr);
-        system(execStr.c_str());
+        this->command="cd ./arena; g++ *.cpp -O3; ./a.out "+this->instances->names.at(i) +" "+to_string(this->conf->genSeed);
+        this->logFile->escreverLinha(this->command);
+        this->sysRet=system(this->command.c_str());
     }
 }
 void Search::evaluateIndividual(int index) {
-
+    execute();
+    
     ifstream File;
     File.open("./arena/Saidas/Resultados");
     string line;
@@ -244,7 +255,6 @@ void Search::evaluateIndividual(int index) {
     fitness/=this->instances->n;
     this->pop[index]->fitness=fitness;
     File.close();
-
 }
 bool Search::sortPopulationFitness(Subject *a, Subject *b) {
     return a->fitness < b->fitness;
@@ -258,5 +268,50 @@ void Search::tokenize(string str, vector<string> &token_v, string DELIMITER) {
         token_v.push_back(str.substr(start, end-start));
         start = str.find_first_not_of(DELIMITER, end);
     }
+}
+//Exclui elementos de execução passada]
+void Search::preparePaths() {
+
+    this->command="rm ./Population/*";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="rm -r ./Generations/*";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="rm ./logFile";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="rm arena/Saidas/Resultados";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+}
+
+void Search::exportFinalResults() {
+    string pathName= to_string(this->conf->generations) + "g_" + to_string(this->conf->popSize) + "p";
+    this->command="mkdir ./Docs/"+pathName;
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="mv ./Resultados ./Docs/"+pathName+"/Resultados";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="mv ./logFile ./Docs/"+pathName+"/logFile";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="mkdir ./Docs/"+pathName+"/Generations";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+    this->command="mv ./Generations/* ./Docs/"+pathName+"/Generations";
+    this->logFile->escreverLinha(this->command);
+    this->sysRet=system(this->command.c_str());
+
+
 }
 

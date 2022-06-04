@@ -1,9 +1,10 @@
 S9
-S9H
 S10
 S11
-Am12a
-Am12b
-Am13a
-Am13b
 Am15
+N25_01.txt
+QAP_sko42_01_n
+QAP_sko42_02_n
+QAP_sko42_03_n
+QAP_sko42_04_n
+QAP_sko49_01_n

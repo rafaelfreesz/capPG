@@ -10,7 +10,7 @@ class Configures {
 public:
     int maxDeep;
     int popSize;
-    int generation;
+    int generations;
     int evaluations;
     int numIndividuosSelection;
     double mutationRate;

@@ -32,7 +32,7 @@ Configures * buildGpConfig(int maxDeep, int generation, int popSize, double cros
     Configures* conf = new Configures();
 
     conf->maxDeep=maxDeep;
-    conf->generation=generation;
+    conf->generations=generation;
     conf->popSize=popSize;
     conf->crossoverRate=crossoverRate;
     conf->mutationRate=mutationRate;

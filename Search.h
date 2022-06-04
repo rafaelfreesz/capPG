@@ -22,13 +22,14 @@ public:
 
     void evolve();
     void createInicialPopulation();
-    void evaluatePopulation(int initialIndex, int finalIndex);
-    void execute() const;
+    void evaluatePopulation(int initialIndex, int finalIndex, int generation);
+    void execute();
     void evaluateIndividual(int index);
     static bool sortPopulationFitness(Subject* a, Subject* b);
     void randPais(Subject **pais, int ind);
     void operate();
     void replace();
+    void preparePaths();
     //-----Elementos de Crossover-----//
     void crossover(Subject** selecionados);
     void treeCrossover(Tree* a, Tree* b);
@@ -37,6 +38,7 @@ public:
     void auxMutate(Tree* t);
 
     void exportGeneration(int gen);
+    void exportFinalResults();
 
     void tokenize(string str, vector<string> &token_v, string DELIMITER);
 
@@ -51,6 +53,8 @@ public:
     Grammar* grammar;
     Instances* instances;
     Saida* logFile;
+    string command;
+    int sysRet;
 
 };
 
