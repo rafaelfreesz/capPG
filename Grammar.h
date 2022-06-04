@@ -12,6 +12,7 @@
 #include <algorithm>
 #include "Configures.h"
 #include "No.h"
+#define INFINT 2147483647
 using namespace std;
 
 class Node{

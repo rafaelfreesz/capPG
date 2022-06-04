@@ -210,7 +210,7 @@ void Grammar::high1(Node* n) {
         return;
 
     n->visited = true;
-    n->high = INFINITY;
+    n->high = INFINT;
 
     if(n->type > NONTERMINAL)
         n->high = -1;
@@ -229,7 +229,7 @@ void Grammar::high1(Node* n) {
 }
 void Grammar::high2() {
     for(Node* n : this->grammar) {
-        int min = INFINITY;
+        int min = INFINT;
         for (Node *nn: n->productions) {
             int max = 0;
             for (Node *nnn: nn->productions)

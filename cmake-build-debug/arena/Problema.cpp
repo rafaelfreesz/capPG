@@ -15,8 +15,8 @@ void Problema::go() {
     for(int i=0;i<50; i++){
         //begin cod
 
- swap(0.150000 ,0.850000 ) ;
-
+ bL1() ;
+        
         //end cod
         if(this->funcaoObjetivo<melhorObjetivo){
             melhorObjetivo=this->funcaoObjetivo;
@@ -205,6 +205,7 @@ void Problema::RVND() {
 
     int vetRand[4]={0,1,2,3};
     int fase=0;
+    int u=0;
     while(fase < 4){
         melhorado=false;
 
@@ -251,6 +252,7 @@ void Problema::RVND() {
                 }
                 break;
         }
+
     }
 }
 
@@ -370,7 +372,7 @@ void Problema::bLFase4(bool *melhorado) {
     for (int i = this->particao; i < this->n; i++) {
 
         this->particao++;
-        swapIndex(i, this->particao - 1);
+        insert(i, this->particao - 1);
         calcularSolucao();
 
         if (this->funcaoObjetivo < melhorSolucao) {
@@ -394,7 +396,7 @@ void Problema::bLFase4(bool *melhorado) {
 }
 
 void Problema::insert(int iOrigem, int iDestino) {
-    if(iOrigem<this->n && iOrigem>=0 && iDestino<this->n && iDestino>=0) {
+    if(iOrigem<this->n && iOrigem>=0 && iDestino<this->n && iDestino>=0 && iOrigem!=iDestino) {
 
         int aux = this->corredorSolucao[iOrigem];
         if (iOrigem < iDestino) {
