@@ -3,4 +3,4 @@ project(CapHH)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(CapHH main.cpp Saida.cpp Saida.h Configures.cpp Configures.h Grammar.cpp Grammar.h Parser.cpp Parser.h Search.cpp Search.h Subject.cpp Subject.h Tree.cpp Tree.h No.cpp No.h Instances.cpp Instances.h)
+add_executable(CapHH main.cpp Saida.cpp Saida.h Configuracoes.cpp Configuracoes.h Gramatica.cpp Gramatica.h Search.cpp Search.h Individuo.cpp Individuo.h Arvore.cpp Arvore.h No.cpp No.h Instancia.cpp Instancia.h Arena.cpp Arena.h)

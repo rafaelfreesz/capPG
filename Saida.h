@@ -6,7 +6,7 @@
 #define CAPHH_SAIDA_H
 #include <fstream>
 #include <cstring>
-#include "Subject.h"
+#include "Individuo.h"
 
 using namespace std;
 class Saida {
@@ -15,7 +15,7 @@ public:
     ~Saida();
     void abrirArquivo();
     void fecharArquivo();
-    void imprimirResultado(Subject **pop, int popSize, int generation, int seed);
+    void imprimirResultado(Individuo **pop, int popSize, int generation, int generationSeed);
     void escreverLinha(string linha);
 
 private:

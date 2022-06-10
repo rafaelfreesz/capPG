@@ -6,56 +6,52 @@
 #define CAPHH_SEARCH_H
 #include <iostream>
 #include <vector>
-#include "Parser.h"
-#include "Subject.h"
-#include "Grammar.h"
-#include "Configures.h"
+#include "Individuo.h"
+#include "Gramatica.h"
+#include "Configuracoes.h"
 #include "Saida.h"
-#include "Instances.h"
+#include "Instancia.h"
+#include "Arena.h"
 #include <ctime>
 
 using namespace std;
 class Search {
 public:
-    Search(Parser *parser, int *populationReplacement, Configures *conf,Grammar* grammar);
+    Search(Configuracoes *conf, Gramatica *grammar, int seed);
     ~Search();
 
-    void evolve();
-    void createInicialPopulation();
-    void evaluatePopulation(int initialIndex, int finalIndex, int generation);
-    void execute();
-    void evaluateIndividual(int index);
-    static bool sortPopulationFitness(Subject* a, Subject* b);
-    void randPais(Subject **pais, int ind);
+    void inciar();
+    void criarPopulacaoInicial();
+    void avaliarPopulacao(int initialIndex, int finalIndex, int generation);
+
+    void avaliarIndividuo(int index);
+    static bool sortPopulationFitness(Individuo* a, Individuo* b);
+    void randPais(Individuo **pais, int ind);
     void operate();
     void replace();
-    void preparePaths();
-    //-----Elementos de Crossover-----//
-    void crossover(Subject** selecionados);
-    void treeCrossover(Tree* a, Tree* b);
-    //-----Elementos de Mutação-----//
-    void mutate(Subject** selecionados);
-    void auxMutate(Tree* t);
 
-    void exportGeneration(int gen);
-    void exportFinalResults();
+    //-----Elementos de Crossover-----//
+    void crossover(Individuo** selecionados);
+    void treeCrossover(Arvore* a, Arvore* b);
+
+    //-----Elementos de Mutação-----//
+    void mutate(Individuo** selecionados);
+    void auxMutate(Arvore* t);
+
+    //-----Preparações-----//
+    void montarInstancias();
+    void exportarResultadoIndividuo(int index);
+    void exportarIndividuo(int index);
+    void gerarSolucoesIniciais();
 
     void tokenize(string str, vector<string> &token_v, string DELIMITER);
 
-    Parser* parser;
-    int* populationReplacement;
-    stringstream saGpAgent;
-    stringstream sbGpAgent;
-    string aGpAgent;
-    string bGpAgent;
-    Subject** pop;
-    Configures* conf;
-    Grammar* grammar;
-    Instances* instances;
-    Saida* logFile;
+    Individuo** populacao;
+    Configuracoes* conf;
+    Gramatica* grammar;
     string command;
-    int sysRet;
-
+    vector<Instancia> instancias;
+    int seed;
 };
 
 

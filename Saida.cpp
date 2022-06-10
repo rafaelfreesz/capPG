@@ -21,10 +21,10 @@ void Saida::fecharArquivo() {
     }
 }
 
-void Saida::imprimirResultado(Subject **pop, int popSize, int generation, int seed) {
-    this->saida<<to_string(generation)<<" | "<<to_string(seed)<<" | ";
+void Saida::imprimirResultado(Individuo **pop, int popSize, int generation, int generationSeed) {
+    this->saida << to_string(generation) << " | " << to_string(generationSeed) << " | ";
     for(int i=0;i<popSize;i++){
-        this->saida<<pop[i]->fitness<<" ("<< pop[i]->subjectName<<") - ";
+        this->saida << pop[i]->fitness << " (" << pop[i]->nome << ") - ";
     }
     this->saida<<endl;
 }

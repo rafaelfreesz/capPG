@@ -18,11 +18,9 @@ void No::addSon(No *n) {
 void No::str(ostream &model) {
 
     if(this->type != -1) {
-        if(isdigit(this->mask.c_str()[0])) {
-            model <<this->mask;
-        }else{
-            model << " " << this->mask;
-        }
+
+        model << " " << this->mask;
+
 
         if (this->mask == ";") {
             model << endl;

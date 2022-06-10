@@ -1,46 +1,22 @@
 #include <iostream>
-#include "Configures.h"
-#include "Grammar.h"
-#include "Parser.h"
+#include "Configuracoes.h"
+#include "Gramatica.h"
 #include "Search.h"
 
-
+//Arrumada classe Instancia, preparar arena para interpretar comandos
 using namespace std;
 
-Configures *
-buildGpConfig(int maxDeep, int generation, int popSize, double crossoverRate, double mutationRate, double elitism,
-              int numIndividuosSelection);
-
-
 int main(int argc, char** argv) {
-    srand(clock());
-    Configures* conf = buildGpConfig(10, 500, 100, 0.9, 0.1, 0.05, 2);
+    int seed=clock();
+    srand(seed);
 
-    Grammar* grammar=new Grammar("grammar.dat",conf);
+    Configuracoes* conf = new Configuracoes(10, 1000, 100, 0.9, 0.1, 0.05, 2);
 
-    Parser* parser = new Parser();
+    Gramatica* gramatica=new Gramatica("grammar.dat", conf);
 
-    Search* search = new Search(parser, NULL, conf, grammar);
+    Search* search = new Search(conf, gramatica, seed);
 
-    search->evolve();
+    search->inciar();
 
     delete conf;
-    delete parser;
-}
-
-//Define as configurações da PG
-Configures * buildGpConfig(int maxDeep, int generation, int popSize, double crossoverRate, double mutationRate, double elitism,
-              int numIndividuosSelection) {
-    Configures* conf = new Configures();
-
-    conf->maxDeep=maxDeep;
-    conf->generations=generation;
-    conf->popSize=popSize;
-    conf->crossoverRate=crossoverRate;
-    conf->mutationRate=mutationRate;
-    conf->evaluations=0;
-    conf->elitism=elitism;
-    conf->numIndividuosSelection=numIndividuosSelection;
-
-    return conf;
 }
