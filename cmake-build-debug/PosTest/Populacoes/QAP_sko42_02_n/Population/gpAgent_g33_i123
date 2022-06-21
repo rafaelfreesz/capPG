@@ -1,0 +1,16 @@
+ blPc();
+ rec( 0.350000 );
+ blPc();
+ bL2();
+ rec( 0.600000 );
+ RVND();
+ RVND();
+ repart( - 0.500000 );
+ bL4();
+ blPc();
+ bL3();
+ rec( 0.600000 );
+ RVND();
+ blPc();
+ blPc();
+ RVND();

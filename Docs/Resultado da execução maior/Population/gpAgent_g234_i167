@@ -1,0 +1,10 @@
+ blPc();
+ RVND();
+ bL4();
+ rec( 0.500000 );
+ RVND();
+ rec( 0.400000 );
+ RVND();
+ blPc();
+ bL4();
+ RVND();

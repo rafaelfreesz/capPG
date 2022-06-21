@@ -1,0 +1,7 @@
+ RVND();
+ rec( 0.300000 );
+ shake( 0.650000 );
+ RVND();
+ RVND();
+ repart( + 0.800000 );
+ RVND();

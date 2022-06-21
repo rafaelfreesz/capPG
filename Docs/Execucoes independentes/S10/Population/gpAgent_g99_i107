@@ -1,0 +1,9 @@
+ shake( 0.300000 );
+ bL1();
+ blPc();
+ bL1();
+ RVND();
+ bL4();
+ repart( - 0.800000 );
+ blPc();
+ bL3();

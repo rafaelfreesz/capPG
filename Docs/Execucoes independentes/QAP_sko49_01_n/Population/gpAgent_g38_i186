@@ -1,0 +1,10 @@
+ RVND();
+ RVND();
+ blPc();
+ RVND();
+ RVND();
+ bL4();
+ bL3();
+ swap( 0.400000 , 0.150000 );
+ blPc();
+ bL3();

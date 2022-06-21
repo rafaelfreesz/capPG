@@ -1,0 +1,17 @@
+ shake( 0.800000 );
+ RVND();
+ bL2();
+ RVND();
+ rec( 0.800000 );
+ rec( 0.300000 );
+ rec( 0.300000 );
+ bL3();
+ RVND();
+ bL3();
+ rec( 0.200000 );
+ RVND();
+ RVND();
+ RVND();
+ repart( + 0.650000 );
+ RVND();
+ RVND();

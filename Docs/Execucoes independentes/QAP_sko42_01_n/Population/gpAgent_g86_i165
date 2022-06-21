@@ -1,0 +1,12 @@
+ repart( + 0.150000 );
+ bL2();
+ RVND();
+ RVND();
+ RVND();
+ bL1();
+ RVND();
+ RVND();
+ repart( + 0.200000 );
+ RVND();
+ RVND();
+ RVND();

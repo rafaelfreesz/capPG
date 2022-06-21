@@ -1,0 +1,10 @@
+ rec( 0.550000 );
+ RVND();
+ RVND();
+ rec( 0.550000 );
+ rec( 0.200000 );
+ RVND();
+ RVND();
+ RVND();
+ shake( 0.600000 );
+ RVND();

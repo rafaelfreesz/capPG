@@ -1,0 +1,13 @@
+ bL3();
+ repart( - 0.050000 );
+ bL3();
+ RVND();
+ RVND();
+ blPc();
+ bL3();
+ rec( 0.150000 );
+ RVND();
+ RVND();
+ RVND();
+ repart( - 0.650000 );
+ RVND();

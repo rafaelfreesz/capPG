@@ -1,0 +1,7 @@
+ repart( + 0.150000 );
+ repart( + 0.850000 );
+ RVND();
+ repart( + 0.150000 );
+ repart( + 0.400000 );
+ blPc();
+ RVND();

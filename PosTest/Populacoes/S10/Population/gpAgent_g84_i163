@@ -1,0 +1,15 @@
+ blPc();
+ repart( - 0.550000 );
+ shake( 0.550000 );
+ repart( - 0.300000 );
+ blPc();
+ bL1();
+ bL2();
+ repart( + 1.000000 );
+ shake( 0.000000 );
+ blPc();
+ blPc();
+ repart( + 0.450000 );
+ shake( 0.450000 );
+ rec( 0.850000 );
+ blPc();

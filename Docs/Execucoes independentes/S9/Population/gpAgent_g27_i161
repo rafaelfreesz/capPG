@@ -1,0 +1,6 @@
+ RVND();
+ bL2();
+ RVND();
+ bL3();
+ repart( + 0.250000 );
+ RVND();

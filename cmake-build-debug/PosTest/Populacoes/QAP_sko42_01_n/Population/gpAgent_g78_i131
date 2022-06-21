@@ -1,0 +1,14 @@
+ repart( + 0.200000 );
+ RVND();
+ swap( 0.550000 , 0.950000 );
+ RVND();
+ blPc();
+ RVND();
+ repart( + 0.150000 );
+ swap( 0.150000 , 0.950000 );
+ RVND();
+ RVND();
+ RVND();
+ blPc();
+ blPc();
+ RVND();

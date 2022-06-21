@@ -21,9 +21,9 @@ public:
     ~Search();
 
     void inciar();
+    void iniciarPosTeste();
     void criarPopulacaoInicial();
     void avaliarPopulacao(int initialIndex, int finalIndex, int generation);
-
     void avaliarIndividuo(int index);
     static bool sortPopulationFitness(Individuo* a, Individuo* b);
     void randPais(Individuo **pais, int ind);

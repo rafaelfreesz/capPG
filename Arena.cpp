@@ -19,6 +19,7 @@ Arena::~Arena() {
     delete[] this->corredor;
     delete[] this->abcissas;
 }
+
 void Arena::go(vector<string>* individuoTokenizado) {
 
     importarSolucao();

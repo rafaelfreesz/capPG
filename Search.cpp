@@ -77,6 +77,112 @@ void Search::montarInstancias() {
     }
 }
 
+
+void Search::iniciarPosTeste() {
+
+    string sentence;
+    ifstream fileIndividuos;
+
+    sentence="./PosTest/Melhores";
+    fileIndividuos.open(sentence.c_str());
+
+    sentence ="./PosTest/Resultado";
+    ofstream saida(sentence.c_str());
+
+    //Gerando sementes. Uma pra cada execução
+    vector<int> sementes;
+    sentence="sementes: ";
+    for(int i=0;i<30;i++){
+        sementes.push_back(rand());
+        sentence+= to_string(sementes.at(i))+" ";
+    }
+    saida<<sentence<<endl;
+
+    double* solucao=new double [30];
+    double* tempo=new double [30];
+    double mediaSolucao;
+    double mediaTempo;
+    double melhorSolucao;
+
+    gerarSolucoesIniciais();
+    string strSaida;
+    string strInstancia;
+    string strIndividuo;
+    //Pros 10 melhores individuos de cada instancia
+    while(getline(fileIndividuos,strInstancia)){
+        cout<<"Individuos gerados para a instancia "+strInstancia<<endl;
+        saida<<"Individuos_Instancia_"+strInstancia<<endl;
+
+        //Pra cada individuo
+        for(int i=0;i<10;i++){
+            getline(fileIndividuos, strIndividuo);
+            cout<<"Individuo "+strIndividuo<<endl;
+            saida<<strIndividuo<<endl;
+            //Recuperando Individuo
+            vector<string> individuoTokenizado;
+            sentence="./PosTest/Populacoes/"+ strInstancia + "/Population/" + strIndividuo;
+
+            ifstream fileIndividuo;
+            fileIndividuo.open(sentence.c_str());
+
+            sentence="";
+            string individuoLinear="";
+            while(getline(fileIndividuo,sentence)){
+                individuoLinear+=sentence;
+            }
+
+            tokenize(individuoLinear,individuoTokenizado," ");
+
+
+            fileIndividuo.close();
+
+            //pra cada instancia
+            for(int j=0;j<this->instancias.size();j++) {
+                strSaida=this->instancias.at(j).nome;
+                //Executar 30 vezes
+                mediaSolucao=0;
+                mediaTempo=0;
+                melhorSolucao=0;
+                for(int k=0;k<30;k++){
+                    srand(sementes.at(k));
+                    Arena* arena=new Arena(&this->instancias.at(j));
+
+
+                    clock_t time=clock();
+                    arena->go(&individuoTokenizado);
+                    time=clock()-time;
+
+                    solucao[k]=arena->fo;
+                    tempo[k]=(double)time/CLOCKS_PER_SEC;
+                    strSaida+= ";"+to_string(solucao[k])+";"+ to_string(tempo[k]);
+
+                    delete arena;
+                }
+                for(int k=0;k<30;k++){
+                    mediaTempo+=tempo[k];
+                    mediaSolucao+=solucao[k];
+                    if(solucao[k]<melhorSolucao || melhorSolucao==0){
+                        melhorSolucao=solucao[k];
+                    }
+                }
+                mediaTempo/=30.0;
+                mediaSolucao/=30.0;
+                strSaida+= to_string(melhorSolucao)+";"+ to_string(mediaSolucao)+";"+ to_string(mediaTempo);
+                saida<<strSaida<<endl;
+
+                cout<<this->instancias.at(j).nome+"- bS:"+ to_string(melhorSolucao)+"; aS:"<<to_string(mediaSolucao)<<"; aT:"<<to_string(mediaTempo)<<endl;
+
+            }
+        }
+
+    }
+
+
+    fileIndividuos.close();
+    delete[] solucao;
+    delete[] tempo;
+
+}
 void Search::inciar() {
 
     Saida* relatorioGeracoes=new Saida("Resultados");
