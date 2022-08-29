@@ -1,7 +1,0 @@
- blPc();
- bL4();
- blPc();
- bL3();
- shake( 0.950000 );
- blPc();
- bL3();

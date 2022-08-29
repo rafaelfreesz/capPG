@@ -1,9 +1,0 @@
- repart( + 0.150000 );
- rec( 1.000000 );
- blPc();
- shake( 0.600000 );
- shake( 0.250000 );
- RVND();
- shake( 0.500000 );
- RVND();
- RVND();

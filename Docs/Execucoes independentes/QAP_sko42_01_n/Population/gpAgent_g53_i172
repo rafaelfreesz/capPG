@@ -1,9 +1,0 @@
- RVND();
- repart( + 0.450000 );
- swap( 0.050000 , 0.400000 );
- RVND();
- bL1();
- blPc();
- RVND();
- bL1();
- RVND();

@@ -1,9 +1,0 @@
- swap( 0.450000 , 0.800000 );
- blPc();
- shake( 0.950000 );
- blPc();
- rec( 0.600000 );
- RVND();
- blPc();
- blPc();
- RVND();

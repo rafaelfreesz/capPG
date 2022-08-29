@@ -1,9 +1,0 @@
- shake( 0.900000 );
- blPc();
- blPc();
- bL3();
- shake( 0.550000 );
- bL3();
- repart( - 0.550000 );
- blPc();
- blPc();

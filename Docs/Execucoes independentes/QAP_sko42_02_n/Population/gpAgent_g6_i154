@@ -1,9 +1,0 @@
- repart( - 0.500000 );
- bL4();
- blPc();
- bL3();
- bL4();
- RVND();
- bL1();
- blPc();
- RVND();

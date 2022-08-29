@@ -1,8 +1,0 @@
- swap( 0.600000 , 0.900000 );
- RVND();
- RVND();
- bL2();
- blPc();
- RVND();
- RVND();
- repart( - 0.000000 );

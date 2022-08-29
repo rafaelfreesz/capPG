@@ -1,7 +1,0 @@
- bL2();
- rec( 0.200000 );
- RVND();
- RVND();
- blPc();
- shake( 0.950000 );
- RVND();
