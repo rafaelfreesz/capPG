@@ -1,6 +1,6 @@
-#**A Grammar-based Genetic Programming Hyper-Heuristic for Corridor Allocation Problem**
+# **A Grammar-based Genetic Programming Hyper-Heuristic for Corridor Allocation Problem**
 
-###**Abstract:**
+### **Abstract:**
 Layout problems are the physical arrangement of facilities along a given area commonly used in practice.
 The Corridor Allocation Problem (CAP) is a class of layout problems in which no overlapping of rooms is allowed, no empty spaces are allowed between the rooms, and the two first facilities (one on each side) are placed on zero abscissa.
 This combinatorial problem is usually solved using heuristics, but designing and selecting the appropriate parameters is a complex task.
