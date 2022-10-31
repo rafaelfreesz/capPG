@@ -97,10 +97,10 @@
 		<Unit filename="/home/rafael/CLionProjects/capPg/Grammar.h">
 			<Option target="CapHH"/>
 		</Unit>
-		<Unit filename="/home/rafael/CLionProjects/capPg/Individuo.cpp">
+		<Unit filename="/home/rafael/CLionProjects/capPg/Individual.cpp">
 			<Option target="CapHH"/>
 		</Unit>
-		<Unit filename="/home/rafael/CLionProjects/capPg/Individuo.h">
+		<Unit filename="/home/rafael/CLionProjects/capPg/Individual.h">
 			<Option target="CapHH"/>
 		</Unit>
 		<Unit filename="/home/rafael/CLionProjects/capPg/Instance.cpp">
@@ -115,10 +115,10 @@
 		<Unit filename="/home/rafael/CLionProjects/capPg/Node.h">
 			<Option target="CapHH"/>
 		</Unit>
-		<Unit filename="/home/rafael/CLionProjects/capPg/Saida.cpp">
+		<Unit filename="/home/rafael/CLionProjects/capPg/Output.cpp">
 			<Option target="CapHH"/>
 		</Unit>
-		<Unit filename="/home/rafael/CLionProjects/capPg/Saida.h">
+		<Unit filename="/home/rafael/CLionProjects/capPg/Output.h">
 			<Option target="CapHH"/>
 		</Unit>
 		<Unit filename="/home/rafael/CLionProjects/capPg/Search.cpp">

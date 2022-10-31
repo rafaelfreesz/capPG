@@ -6,10 +6,10 @@
 #define CAPHH_SEARCH_H
 #include <iostream>
 #include <vector>
-#include "Individuo.h"
+#include "Individual.h"
 #include "Grammar.h"
 #include "Configures.h"
-#include "Saida.h"
+#include "Output.h"
 #include "Instance.h"
 #include "Arena.h"
 #include <ctime>
@@ -20,37 +20,37 @@ public:
     Search(Configures *conf, int seed);
     ~Search();
 
-    void inciar();
-    void iniciarPosTeste();
-    void criarPopulacaoInicial();
-    void avaliarPopulacao(int initialIndex, int finalIndex, int generation);
-    void avaliarIndividuo(int index);
-    static bool sortPopulationFitness(Individuo* a, Individuo* b);
-    void randPais(Individuo **pais, int ind);
+    void evolve();
+    void runAllInstances();
+    void buildInitialPopulation();
+    void evaluatePopulation(int initialIndex, int finalIndex, int generation);
+    void evaluateIndividual(int index);
+    static bool sortPopulationFitness(Individual* a, Individual* b);
+    void randParents(Individual **parents, int ind);
     void operate();
     void replace();
 
-    //-----Elementos de Crossover-----//
-    void crossover(Individuo** selecionados);
+    //-----Crossover Operators-----//
+    void crossover(Individual** selected);
     void treeCrossover(Tree* a, Tree* b);
 
-    //-----Elementos de Mutação-----//
-    void mutate(Individuo** selecionados);
+    //-----Mutation Operators-----//
+    void mutate(Individual** selected);
     void auxMutate(Tree* t);
 
-    //-----Preparações-----//
-    void montarInstancias();
-    void exportarResultadoIndividuo(int index);
-    void exportarIndividuo(int index);
-    void gerarSolucoesIniciais();
+    //-----Pre-running-----//
+    void buildInstances();
+    void printIndividual(int index);
+    void printIndividualResults(int index);
+    void generateInitialSolutions();
 
     void tokenize(string str, vector<string> &token_v, string DELIMITER);
 
-    Individuo** populacao;
+    Individual** population;
     Configures* conf;
     Grammar* grammar;
     string command;
-    vector<Instance> instancias;
+    vector<Instance> instances;
     int seed;
 };
 

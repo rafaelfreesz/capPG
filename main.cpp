@@ -13,8 +13,8 @@ int main(int argc, char** argv) {
 
     Search* search = new Search(conf, seed);
 
-    search->inciar();
-    search->iniciarPosTeste();
+    search->evolve();
+    search->runAllInstances();
     delete conf;
 }
 

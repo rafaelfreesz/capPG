@@ -148,7 +148,7 @@ CMakeFiles/CapHH.dir/Search.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/rafael/CLionProjects/capPg/Individuo.h \
+ /home/rafael/CLionProjects/capPg/Individual.h \
  /home/rafael/CLionProjects/capPg/Tree.h \
  /home/rafael/CLionProjects/capPg/Node.h \
  /home/rafael/CLionProjects/capPg/Grammar.h /usr/include/c++/11/tuple \
@@ -176,7 +176,7 @@ CMakeFiles/CapHH.dir/Search.cpp.o: \
  /usr/include/c++/11/bits/uniform_int_dist.h \
  /home/rafael/CLionProjects/capPg/Configures.h \
  /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
- /home/rafael/CLionProjects/capPg/Saida.h /usr/include/c++/11/cstring \
+ /home/rafael/CLionProjects/capPg/Output.h /usr/include/c++/11/cstring \
  /usr/include/string.h /usr/include/strings.h \
  /home/rafael/CLionProjects/capPg/Instance.h \
  /home/rafael/CLionProjects/capPg/Arena.h /usr/include/c++/11/ctime

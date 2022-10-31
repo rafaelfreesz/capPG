@@ -417,9 +417,9 @@ CMakeFiles/CapHH.dir/Grammar.cpp.o: ../Grammar.cpp \
   ../Configures.h \
   ../Node.h
 
-CMakeFiles/CapHH.dir/Individuo.cpp.o: ../Individuo.cpp \
+CMakeFiles/CapHH.dir/Individual.cpp.o: ../Individual.cpp \
   /usr/include/stdc-predef.h \
-  ../Individuo.h \
+  ../Individual.h \
   ../Tree.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_algobase.h \
@@ -1004,9 +1004,9 @@ CMakeFiles/CapHH.dir/Node.cpp.o: ../Node.cpp \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc
 
-CMakeFiles/CapHH.dir/Saida.cpp.o: ../Saida.cpp \
+CMakeFiles/CapHH.dir/Output.cpp.o: ../Output.cpp \
   /usr/include/stdc-predef.h \
-  ../Saida.h \
+  ../Output.h \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/ios \
@@ -1189,7 +1189,7 @@ CMakeFiles/CapHH.dir/Saida.cpp.o: ../Saida.cpp \
   /usr/include/c++/11/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  ../Individuo.h \
+  ../Individual.h \
   ../Tree.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_uninitialized.h \
@@ -1410,7 +1410,7 @@ CMakeFiles/CapHH.dir/Search.cpp.o: ../Search.cpp \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
-  ../Individuo.h \
+  ../Individual.h \
   ../Tree.h \
   ../Node.h \
   ../Grammar.h \
@@ -1446,7 +1446,7 @@ CMakeFiles/CapHH.dir/Search.cpp.o: ../Search.cpp \
   ../Configures.h \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc \
-  ../Saida.h \
+  ../Output.h \
   /usr/include/c++/11/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
@@ -1856,7 +1856,7 @@ CMakeFiles/CapHH.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
-  ../Individuo.h \
+  ../Individual.h \
   ../Tree.h \
   ../Node.h \
   ../Grammar.h \
@@ -1891,7 +1891,7 @@ CMakeFiles/CapHH.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/uniform_int_dist.h \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc \
-  ../Saida.h \
+  ../Output.h \
   /usr/include/c++/11/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
@@ -1908,7 +1908,7 @@ CMakeFiles/CapHH.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/strings.h:
 
-../Saida.cpp:
+../Output.cpp:
 
 ../Node.cpp:
 
@@ -1918,9 +1918,9 @@ CMakeFiles/CapHH.dir/main.cpp.o: ../main.cpp \
 
 ../Tree.h:
 
-../Individuo.h:
+../Individual.h:
 
-../Individuo.cpp:
+../Individual.cpp:
 
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
@@ -2166,8 +2166,6 @@ CMakeFiles/CapHH.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
-../Saida.h:
-
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
@@ -2213,6 +2211,8 @@ CMakeFiles/CapHH.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/postypes.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+
+../Output.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 

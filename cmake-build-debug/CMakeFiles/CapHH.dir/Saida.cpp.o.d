@@ -149,7 +149,7 @@ CMakeFiles/CapHH.dir/Saida.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/cstring \
  /usr/include/string.h /usr/include/strings.h \
- /home/rafael/CLionProjects/capPg/Individuo.h \
+ /home/rafael/CLionProjects/capPg/Individual.h \
  /home/rafael/CLionProjects/capPg/Tree.h /usr/include/c++/11/vector \
  /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
