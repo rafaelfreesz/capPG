@@ -11,20 +11,20 @@
 #include <math.h>
 #include <algorithm>
 #include "Configures.h"
-#include "No.h"
+#include "Node.h"
 #define INFINT 2147483647
 using namespace std;
 
-class Node{
+class GrammarNode{
 public:
-    vector<Node*> productions;
+    vector<GrammarNode*> productions;
     double type;
     double value;
     string mask;
     bool visited;
     int high;
 
-    Node(){ this->visited=false; this->high=-1;}
+    GrammarNode(){ this->visited=false; this->high=-1;}
 };
 
 class Grammar {
@@ -32,7 +32,7 @@ public:
     Grammar(string gram, Configures* conf);
     virtual ~Grammar();
 
-    vector<Node*> grammar;
+    vector<GrammarNode*> grammar;
     vector<string> nonTerminals;
     vector<vector<string>> terminals;
     Configures* conf;
@@ -44,11 +44,11 @@ public:
     tuple<double, double, string> getTerminal(string t);
     tuple<double, double, string> getString(string s);
     void updateHigh();
-    void high1(Node* n);
+    void high1(GrammarNode* n);
     void high2();
-    static bool sortNode(Node* a, Node* b);
-    int derivate(No* n);
-    int buildInitialPopulation(No* n, int deep);
+    static bool sortNode(GrammarNode* a, GrammarNode* b);
+    int derivate(Node* n);
+    int buildInitialPopulation(Node* n, int deep);
 
     void printGrammar();
     void printTerminals();

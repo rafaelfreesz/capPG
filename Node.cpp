@@ -2,10 +2,10 @@
 // Created by rafael on 22/02/2022.
 //
 
-#include "No.h"
+#include "Node.h"
 
 //Constructor
-No::No(double type, double value, string mask, int deep) {
+Node::Node(double type, double value, string mask, int deep) {
     this->type=type;
     this->value=value;
     this->mask=mask;
@@ -13,12 +13,12 @@ No::No(double type, double value, string mask, int deep) {
 }
 
 //Insert node n as son
-void No::addSon(No *n) {
+void Node::addSon(Node *n) {
     this->sons.push_back(n);
 }
 
 //Return a subtree as string
-void No::str(ostream &model) {
+void Node::str(ostream &model) {
 
     if(this->type != -1) {
 
@@ -30,30 +30,30 @@ void No::str(ostream &model) {
         }
     }
 
-    for(No* n : this->sons){
+    for(Node* n : this->sons){
         n->str(model);
     }
 
 }
 
 //print subtree
-void No::print() {
+void Node::print() {
     if(type != -1)
         cout << mask << " ";
 
-    for(No* n : sons)
+    for(Node* n : sons)
         n->print();
 }
 
 //Return node clone
-No *No::clone() {
-    No* n = new No(this->type, this->value, this->mask, this->deep);
+Node *Node::clone() {
+    Node* n = new Node(this->type, this->value, this->mask, this->deep);
     return n;
 }
 
 //Erase tree
-void No::erase() {
-    for(No* n : this->sons)
+void Node::erase() {
+    for(Node* n : this->sons)
         delete n;
     this->sons.clear();
 }

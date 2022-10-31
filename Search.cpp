@@ -22,7 +22,7 @@ void Search::montarInstancias() {
     ifstream fileStream;
     string linha;
 
-    //Importando o name da instancia e a solução da literatura
+    //Importando o name da instance e a solução da literatura
     linha="./Instancias/lit.sol";
     fileStream.open(linha.c_str());
     while(getline(fileStream, linha)){
@@ -40,7 +40,7 @@ void Search::montarInstancias() {
     }
     fileStream.close();
 
-    //Importando os dados da instancia
+    //Importando os dados da instance
     for(int i=0;i<this->instancias.size();i++){
         instancia=&this->instancias.at(i);
         linha="./Instancias/"+instancia->name;
@@ -128,9 +128,9 @@ void Search::iniciarPosTeste() {
     string strSaida;
     string strInstancia;
     string strIndividuo;
-    //Pros 10 melhores individuos de cada instancia
+    //Pros 10 melhores individuos de cada instance
     while(getline(fileIndividuos,strInstancia)){
-        cout<<"Individuos gerados para a instancia "+strInstancia<<endl;
+        cout<<"Individuos gerados para a instance "+strInstancia<<endl;
         saida<<"Individuos_Instancia_"+strInstancia<<endl;
 
         //Pra cada individuo
@@ -156,7 +156,7 @@ void Search::iniciarPosTeste() {
 
             fileIndividuo.close();
 
-            //pra cada instancia
+            //pra cada instance
             for(int j=0;j<this->instancias.size();j++) {
                 strSaida=this->instancias.at(j).name;
                 //Executar 30 vezes
@@ -172,7 +172,7 @@ void Search::iniciarPosTeste() {
                     arena->go(&individuoTokenizado);
                     time=clock()-time;
 
-                    solucao[k]=arena->fo;
+                    solucao[k]=arena->cost;
                     tempo[k]=(double)time/CLOCKS_PER_SEC;
                     strSaida+= ";"+to_string(solucao[k])+";"+ to_string(tempo[k]);
 
@@ -296,7 +296,7 @@ void Search::mutate(Individuo **selecionados) {
 
 }
 void Search::auxMutate(Tree *t) {
-    No* n = t->subTree();
+    Node* n = t->subTree();
     n->erase();
     this->grammar->derivate(n);
     t->update();
@@ -315,8 +315,8 @@ void Search::crossover(Individuo **selecionados) {
 }
 
 void Search::treeCrossover(Tree *a, Tree *b) {
-    No* n = a->subTree();
-    No* m = b->targetSubTree(n);
+    Node* n = a->subTree();
+    Node* m = b->targetSubTree(n);
 
     if(n == NULL || m == NULL) {
         return;
@@ -430,12 +430,12 @@ void Search::avaliarIndividuo(int index) {
         time=clock()-time;
 
         //Armazenando resultados
-        solucoes[i]=arena->fo;
+        solucoes[i]=arena->cost;
         litSol=this->instancias.at(i).literatureCost;
         tempos[i]=(double)time/CLOCKS_PER_SEC;
 
         //Atualizando fitness
-        fitness+= (arena->fo - litSol) / litSol;
+        fitness+= (arena->cost - litSol) / litSol;
 
         delete arena;
     }

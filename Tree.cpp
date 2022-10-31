@@ -9,7 +9,7 @@ Tree::Tree(Configures* conf, Grammar* grammar) {
     this->conf=conf;
     this->grammar=grammar;
 
-    No* n = new No(-1, 0, "<do>", 0);
+    Node* n = new Node(-1, 0, "<do>", 0);
 
     if(rand()%2==0){
         this->grammar->derivate(n);
@@ -25,7 +25,7 @@ Tree::Tree(Configures* conf, Grammar* grammar) {
 }
 
 //Basic constructor
-Tree::Tree(Configures* conf, Grammar* grammar, No* n){
+Tree::Tree(Configures* conf, Grammar* grammar, Node* n){
     this->conf=conf;
     this->grammar=grammar;
     this->root = n;
@@ -52,7 +52,7 @@ void Tree::print() {
 
 //Returns a clone of the tree
 Tree* Tree::clone() {
-    No* n = this->clone(root);
+    Node* n = this->clone(root);
     Tree* t=new Tree(this->conf, this->grammar, n);
     t->update();
 
@@ -60,10 +60,10 @@ Tree* Tree::clone() {
 }
 
 //Returns a clone of a node
-No* Tree::clone(No *n) {
-    No* m = n->clone();
+Node* Tree::clone(Node *n) {
+    Node* m = n->clone();
 
-    for(No* f : n->sons) {
+    for(Node* f : n->sons) {
         m->addSon(clone(f));
     }
 
@@ -77,12 +77,12 @@ void Tree::update() {
 }
 
 //Updating tree height from a gived node
-void Tree::update(No *n) {
+void Tree::update(Node *n) {
     if(n->type == NONTERMINAL) {
         this->nonTerminals.push_back(n);
         n->height = 0;
 
-        for(No* m : n->sons) {
+        for(Node* m : n->sons) {
             m->deep = n->deep + 1;
             update(m);
 
@@ -96,12 +96,12 @@ void Tree::update(No *n) {
 }
 
 //Returns a random subtree
-No *Tree::subTree() {
+Node *Tree::subTree() {
     return this->nonTerminals.at(rand() % this->nonTerminals.size());
 }
 
 //Returns a subtree from a gived node
-No* Tree::targetSubTree(No *n) {
+Node* Tree::targetSubTree(Node *n) {
     targetedNonTerminalCount(n, this->root);
     if(targetedNonTerminals.size() > 0)
         return this->targetedNonTerminals.at(rand() % this->targetedNonTerminals.size());
@@ -109,7 +109,7 @@ No* Tree::targetSubTree(No *n) {
 }
 
 //calculates the number of non-terminals
-void Tree::targetedNonTerminalCount(No *n, No *m) {
+void Tree::targetedNonTerminalCount(Node *n, Node *m) {
     if(n->type == m->type &&
        n->value == m->value &&
        n->deep + m->height < this->conf->maxDeep &&
@@ -117,7 +117,7 @@ void Tree::targetedNonTerminalCount(No *n, No *m) {
         targetedNonTerminals.push_back(m);
     }
 
-    for(No* p : m->sons)
+    for(Node* p : m->sons)
         targetedNonTerminalCount(n, p);
 
 }

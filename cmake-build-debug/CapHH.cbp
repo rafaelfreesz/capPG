@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="CapHH"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/rafael/CLionProjects/capPg/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CapHH">
+				<Option output="/home/rafael/CLionProjects/capPg/cmake-build-debug/CapHH" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/rafael/CLionProjects/capPg/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 CapHH"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CapHH/fast">
+				<Option output="/home/rafael/CLionProjects/capPg/cmake-build-debug/CapHH" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/rafael/CLionProjects/capPg/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 CapHH/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/rafael/CLionProjects/capPg/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/rafael/CLionProjects/capPg/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/rafael/CLionProjects/capPg/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Arena.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Arena.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Configures.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Grammar.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Grammar.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Individuo.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Individuo.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Instance.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Instance.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Node.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Node.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Saida.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Saida.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Search.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Search.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Tree.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/Tree.h">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/main.cpp">
+			<Option target="CapHH"/>
+		</Unit>
+		<Unit filename="/home/rafael/CLionProjects/capPg/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

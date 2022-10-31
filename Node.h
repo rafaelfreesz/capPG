@@ -2,20 +2,20 @@
 // Created by rafael on 22/02/2022.
 //
 
-#ifndef CAPHH_NO_H
-#define CAPHH_NO_H
+#ifndef CAPHH_NODE_H
+#define CAPHH_NODE_H
 #include <iostream>
 #include <vector>
 #include <ctype.h>
 
 using namespace std;
-class No {
+class Node {
 public:
-    No(double type, double value, string mask, int deep);
+    Node(double type, double value, string mask, int deep);
 
-    void addSon(No* n);
+    void addSon(Node* n);
     void str(ostream& model);
-    No* clone();
+    Node* clone();
     void print();
     void erase();
 
@@ -25,9 +25,9 @@ public:
     int deep;
     int height;
     int index;
-    vector<No*> sons;
-    No* father;
+    vector<Node*> sons;
+    Node* father;
 };
 
 
-#endif //CAPHH_NO_H
+#endif //CAPHH_NODE_H

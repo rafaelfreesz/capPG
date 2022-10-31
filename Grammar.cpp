@@ -26,7 +26,7 @@ Grammar::Grammar(string gram, Configures* conf) {
         tokens.push_back(rule.at(1));
 
         //Create a rule node
-        Node* n = new Node();
+        GrammarNode* n = new GrammarNode();
         n->type = -1;
         n->value = ntQty;
         n->mask = this->nonTerminals.at(ntQty);
@@ -34,10 +34,10 @@ Grammar::Grammar(string gram, Configures* conf) {
         ntQty++;
     }
 
-    //Transformando as produções em Nodes
+    //Transforming productions into Nodes
     for(int i = 0; i < tokens.size(); i++) {
 
-        Node* n = grammar.at(i);
+        GrammarNode* n = grammar.at(i);
 
         //Non terminal i productions
         vector<string> productions;
@@ -46,7 +46,7 @@ Grammar::Grammar(string gram, Configures* conf) {
         //Inserting one node for each production
         for(int j = 0; j < productions.size(); j++) {
 
-            Node* nProd = new Node();
+            GrammarNode* nProd = new GrammarNode();
             n->productions.push_back(nProd);
 
             //Separating the elements of a single production into different strings
@@ -57,12 +57,12 @@ Grammar::Grammar(string gram, Configures* conf) {
             for(int k = 0; k < product.size(); k++) {
                 //Create the node of every product in a production
                 auto t = getString(product.at(k));
-                Node* nnn;
+                GrammarNode* nnn;
 
                 if(get<0>(t) == NONTERMINAL) {
                     nnn = grammar.at(get<1>(t));
                 } else {
-                    nnn = new Node();
+                    nnn = new GrammarNode();
                     nnn->type = get<0>(t);
                     nnn->value = get<1>(t);
                     nnn->mask = get<2>(t);
@@ -182,12 +182,12 @@ void Grammar::updateHigh() {
     high1(grammar.at(0));
     high2();
 
-    for(Node* n : this->grammar) // sort the productions by minimum high it require
+    for(GrammarNode* n : this->grammar) // sort the productions by minimum high it require
         stable_sort(n->productions.begin(), end(n->productions), sortNode);
 }
 
 //Calculates the minimum height of the grammar
-void Grammar::high1(Node* n) {
+void Grammar::high1(GrammarNode* n) {
     if(n->visited)
         return;
 
@@ -197,10 +197,10 @@ void Grammar::high1(Node* n) {
     if(n->type > NONTERMINAL)
         n->high = -1;
 
-    for(Node* nn : n->productions) {
+    for(GrammarNode* nn : n->productions) {
 
         int maxh = 0;
-        for(Node* nnn : nn->productions) {
+        for(GrammarNode* nnn : nn->productions) {
             high1(nnn);
             maxh = max(maxh, nnn->high);
         }
@@ -212,11 +212,11 @@ void Grammar::high1(Node* n) {
 
 //Calculates the minimum height of the grammar
 void Grammar::high2() {
-    for(Node* n : this->grammar) {
+    for(GrammarNode* n : this->grammar) {
         int min = INFINT;
-        for (Node *nn: n->productions) {
+        for (GrammarNode *nn: n->productions) {
             int max = 0;
-            for (Node *nnn: nn->productions)
+            for (GrammarNode *nnn: nn->productions)
                 if (nnn->high > max)
                     max = nnn->high;
             nn->high = max;
@@ -227,14 +227,16 @@ void Grammar::high2() {
     }
 
 }
-bool Grammar::sortNode(Node* a, Node* b) {
+
+//Node sort criteria
+bool Grammar::sortNode(GrammarNode* a, GrammarNode* b) {
     int aa = 0, bb = 0;
 
-    for(Node* n : a->productions)
+    for(GrammarNode* n : a->productions)
         if(aa < n->high)
             aa = n->high;
 
-    for(Node* n : b->productions)
+    for(GrammarNode* n : b->productions)
         if(bb < n->high)
             bb = n->high;
 
@@ -242,14 +244,14 @@ bool Grammar::sortNode(Node* a, Node* b) {
 }
 
 //Derivation of node n
-int Grammar::derivate(No *n) {
+int Grammar::derivate(Node *n) {
 
     if(n->type==NONTERMINAL){
         n->height=0;
 
         //Looking for productions that do not reach the maximum depth of the tree
         int i=0;
-        for(Node* prod : this->grammar.at(n->value)->productions){
+        for(GrammarNode* prod : this->grammar.at(n->value)->productions){
             if(prod->high + n->deep + 1 <= this->conf->maxDeep){
                 i++;
             }else{
@@ -266,8 +268,8 @@ int Grammar::derivate(No *n) {
         int prod=rand()%i;
 
         //Adding said production as a child of the current node
-        for(Node* m : this->grammar.at(n->value)->productions.at(prod)->productions){
-            No* p = new No(m->type, m->value, m->mask, n->deep + 1);
+        for(GrammarNode* m : this->grammar.at(n->value)->productions.at(prod)->productions){
+            Node* p = new Node(m->type, m->value, m->mask, n->deep + 1);
 
             p->index=n->sons.size();
             p->father=n;
@@ -285,13 +287,13 @@ int Grammar::derivate(No *n) {
 }
 
 //Build initial Population
-int Grammar::buildInitialPopulation(No *n, int deep) {
+int Grammar::buildInitialPopulation(Node *n, int deep) {
     if(n->type==NONTERMINAL) {
         n->height = 0;
 
         //Searching for productions of n that do not reach the maximum depth of the tree
         int i = 0;
-        for (Node *prod: this->grammar.at(n->value)->productions) {
+        for (GrammarNode *prod: this->grammar.at(n->value)->productions) {
             if (prod->high + n->deep + 1 <= deep) {
                 i++;
             } else {
@@ -301,11 +303,11 @@ int Grammar::buildInitialPopulation(No *n, int deep) {
 
         if (i == 0) {
             //Sort grammar nodes by height
-            for (Node *n: this->grammar) {
+            for (GrammarNode *n: this->grammar) {
                 stable_sort(n->productions.begin(), end(n->productions), sortNode);
             }
 
-            for (Node *prod: this->grammar.at(n->value)->productions) {
+            for (GrammarNode *prod: this->grammar.at(n->value)->productions) {
                 if (prod->high + n->deep + 1 <= deep) {
                     i++;
                 } else {
@@ -324,8 +326,8 @@ int Grammar::buildInitialPopulation(No *n, int deep) {
         int prod = rand() % i;
 
         //Adding referring production as child of current node
-        for (Node *m: this->grammar.at(n->value)->productions.at(prod)->productions) {
-            No *p = new No(m->type, m->value, m->mask, n->deep + 1);
+        for (GrammarNode *m: this->grammar.at(n->value)->productions.at(prod)->productions) {
+            Node *p = new Node(m->type, m->value, m->mask, n->deep + 1);
 
             p->index = n->sons.size();
             p->father = n;
@@ -346,11 +348,11 @@ int Grammar::buildInitialPopulation(No *n, int deep) {
 //Print grammar
 void Grammar::printGrammar() {
 
-        for(Node* n : grammar) {
+        for(GrammarNode* n : grammar) {
         cout << n->mask << "(" << n->high << ") " << " ::= ";
 
-        for(Node* nn : n->productions) {
-            for(Node* nnn : nn->productions) {
+        for(GrammarNode* nn : n->productions) {
+            for(GrammarNode* nnn : nn->productions) {
                 cout << "(" << nnn->type << "," << nnn->value << "," << nnn->mask << "," << nnn->high << ") ";
             }
         }

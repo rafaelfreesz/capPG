@@ -16,25 +16,24 @@ public:
     Arena(Instance *instancia);
     ~Arena();
 
-    void go(vector <string>* individuoTokenizado);
-    void interpretar(vector <string>* individuoLinear);
+    void go(vector <string>* tokenizedIndividual);
+    void interpretGrammar(vector <string>* linearIndividual);
 
-    void calcularSolucao();
-    void montarAbcissas();
-    void calcularCusto();
-    void importarSolucao();
+    void calculateSolution();
+    void calculateAbcissa();
+    void calculateCost();
+    void importSolution();
     void swapIndex(int i, int j);
 
-    //operacoes//
+    //operations//
     //pert//
     void swap(float iF, float jF);
-    void repart(float fatorF);
-    void shake (float tamF);
-    void rec(float tam);
+    void repart(float fFactor);
+    void shake (float sSizeRate);
+    void rec(float rSizeRate);
 
-    void insert(int iOrigem, int iDestino);
-    //ref//
-    void RVND();
+    void insert(int iSource, int iDestino);
+    //ref
     void bL1();
     void bL2();
     void bL3();
@@ -42,22 +41,22 @@ public:
     void blPc();
 
     int giveMeIndex(float value);
+    void RVND();
+    void bLPhase1(bool* improved);
+    void bLPhase2(bool* improved);
+    void bLPhase3(bool* improved);
+    void bLPhase4(bool* improved);
 
-    void bLFase1(bool* melhorado);
-    void bLFase2(bool* melhorado);
-    void bLFase3(bool* melhorado);
-    void bLFase4(bool* melhorado);
 
-
-    //Atributos
-    Instance* instancia;
-    int* corredor;
-    float* abcissas;
+    //Attributes
+    Instance* instance;
+    int* corridor;
+    float* abcissa;
     int p;
-    float fo;
+    float cost;
     int n;
 
-    void imprimirCorredor();
+    void printLayout();
 };
 
 
