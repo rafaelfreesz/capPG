@@ -1,4 +1,4 @@
-# Install script for directory: /home/rafael/CLionProjects/CapHH
+# Install script for directory: /home/rafael/CLionProjects/capPg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/rafael/CLionProjects/CapHH/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/rafael/CLionProjects/capPg/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

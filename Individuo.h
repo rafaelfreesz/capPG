@@ -4,14 +4,14 @@
 
 #ifndef CAPHH_INDIVIDUO_H
 #define CAPHH_INDIVIDUO_H
-#include "Arvore.h"
-#include "Configuracoes.h"
-#include "Gramatica.h"
+#include "Tree.h"
+#include "Configures.h"
+#include "Grammar.h"
 
 using namespace std;
 class Individuo {
 public:
-    Individuo(bool inicializa, Configuracoes *conf, Gramatica *grammar);
+    Individuo(bool inicializa, Configures *conf, Grammar *grammar);
 
     virtual ~Individuo();
 
@@ -20,9 +20,9 @@ public:
     void atualizarResultados(float *solucoes, double *tempos, int n);
 
     double fitness;
-    Arvore* tree;
-    Configuracoes* conf;
-    Gramatica* gramatica;
+    Tree* tree;
+    Configures* conf;
+    Grammar* gramatica;
     string nome;
     vector<string> terminaisLinearizados;
     float* solucoes;

@@ -2,37 +2,41 @@
 // Created by rafael on 22/02/2022.
 //
 
-#ifndef CAPHH_ARVORE_H
-#define CAPHH_ARVORE_H
+#ifndef CAPHH_TREE_H
+#define CAPHH_TREE_H
 #include <vector>
 #include "No.h"
-#include "Gramatica.h"
-#include "Configuracoes.h"
+#include "Grammar.h"
+#include "Configures.h"
 #include <sstream>
 #define NONTERMINAL -1
-class Arvore {
+class Tree {
 public:
-    Arvore(Configuracoes* conf, Gramatica* grammar);
-    Arvore(Configuracoes* conf, Gramatica* grammar, No* n);
-    ~Arvore();
+    Tree(Configures* conf, Grammar* grammar);
+    Tree(Configures* conf, Grammar* grammar, No* n);
+    ~Tree();
+
     string str();
-    Arvore* clone();
+    Tree* clone();
     No* clone(No* n);
     No* subTree();
     No* targetSubTree(No* n);
     void targetedNonTerminalCount(No* n, No* m);
+    void update();
+
+    void update (No* n);
+    Configures* conf;
+
     void print();
 
-    void update();
-    void update (No* n);
-
-    Configuracoes* conf;
-    Gramatica* gramatica;
+    Grammar* grammar;
     vector<No*> nonTerminals;
     vector<No*> targetedNonTerminals;
     double fitness;
-    No* raiz;
+
+
+    No* root;
 };
 
 
-#endif //CAPHH_ARVORE_H
+#endif //CAPHH_TREE_H

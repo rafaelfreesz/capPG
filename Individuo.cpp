@@ -4,7 +4,7 @@
 
 #include "Individuo.h"
 
-Individuo::Individuo(bool inicializa, Configuracoes *conf, Gramatica *grammar) {
+Individuo::Individuo(bool inicializa, Configures *conf, Grammar *grammar) {
 
     this->conf=conf;
     this->gramatica=grammar;
@@ -12,7 +12,7 @@ Individuo::Individuo(bool inicializa, Configuracoes *conf, Gramatica *grammar) {
     this->tempos= nullptr;
 
     if(inicializa) {
-        this->tree = new Arvore(this->conf, this->gramatica);
+        this->tree = new Tree(this->conf, this->gramatica);
     }
 
 }

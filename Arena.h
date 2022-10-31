@@ -3,7 +3,7 @@
 //
 #include <cmath>
 #include <vector>
-#include "Instancia.h"
+#include "Instance.h"
 
 #ifndef CAPHH_ARENA_H
 #define CAPHH_ARENA_H
@@ -13,7 +13,7 @@ class Arena {
 
 public:
 
-    Arena(Instancia *instancia);
+    Arena(Instance *instancia);
     ~Arena();
 
     void go(vector <string>* individuoTokenizado);
@@ -50,7 +50,7 @@ public:
 
 
     //Atributos
-    Instancia* instancia;
+    Instance* instancia;
     int* corredor;
     float* abcissas;
     int p;

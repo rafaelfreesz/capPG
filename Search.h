@@ -7,17 +7,17 @@
 #include <iostream>
 #include <vector>
 #include "Individuo.h"
-#include "Gramatica.h"
-#include "Configuracoes.h"
+#include "Grammar.h"
+#include "Configures.h"
 #include "Saida.h"
-#include "Instancia.h"
+#include "Instance.h"
 #include "Arena.h"
 #include <ctime>
 
 using namespace std;
 class Search {
 public:
-    Search(Configuracoes *conf, Gramatica *grammar, int seed);
+    Search(Configures *conf, int seed);
     ~Search();
 
     void inciar();
@@ -32,11 +32,11 @@ public:
 
     //-----Elementos de Crossover-----//
     void crossover(Individuo** selecionados);
-    void treeCrossover(Arvore* a, Arvore* b);
+    void treeCrossover(Tree* a, Tree* b);
 
     //-----Elementos de Mutação-----//
     void mutate(Individuo** selecionados);
-    void auxMutate(Arvore* t);
+    void auxMutate(Tree* t);
 
     //-----Preparações-----//
     void montarInstancias();
@@ -47,10 +47,10 @@ public:
     void tokenize(string str, vector<string> &token_v, string DELIMITER);
 
     Individuo** populacao;
-    Configuracoes* conf;
-    Gramatica* grammar;
+    Configures* conf;
+    Grammar* grammar;
     string command;
-    vector<Instancia> instancias;
+    vector<Instance> instancias;
     int seed;
 };
 

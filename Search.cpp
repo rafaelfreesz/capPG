@@ -4,10 +4,10 @@
 
 #include "Search.h"
 
-Search::Search(Configuracoes *conf, Gramatica *grammar, int seed) {
+Search::Search(Configures *conf, int seed) {
     this->conf=conf;
-    this->grammar=grammar;
     this->seed=seed;
+    this->grammar=new Grammar("grammar.dat", conf);
     montarInstancias();
 
 }
@@ -18,11 +18,11 @@ Search::~Search() {
 
 void Search::montarInstancias() {
 
-    Instancia* instancia;
+    Instance* instancia;
     ifstream fileStream;
     string linha;
 
-    //Importando o nome da instancia e a solução da literatura
+    //Importando o name da instancia e a solução da literatura
     linha="./Instancias/lit.sol";
     fileStream.open(linha.c_str());
     while(getline(fileStream, linha)){
@@ -34,8 +34,8 @@ void Search::montarInstancias() {
         vector<string> tokens;
         tokenize(linha, tokens, ";");
 
-        instancia->nome=tokens.at(0);
-        instancia->litSol=stof(tokens.at(1));
+        instancia->name=tokens.at(0);
+        instancia->literatureCost=stof(tokens.at(1));
 
     }
     fileStream.close();
@@ -43,33 +43,43 @@ void Search::montarInstancias() {
     //Importando os dados da instancia
     for(int i=0;i<this->instancias.size();i++){
         instancia=&this->instancias.at(i);
-        linha="./Instancias/"+instancia->nome;
+        linha="./Instancias/"+instancia->name;
 
         fileStream.open(linha.c_str());
 
         getline(fileStream,linha);
         instancia->n= stoi(linha);
 
-        //Importando comprimentos
-        instancia->alocarComprimentos();
+        //Importando lengths
+        instancia->buildLengths();
         getline(fileStream,linha);
 
         vector<string> comprTokens;
-        tokenize(linha, comprTokens, " ");
+        tokenize(linha, comprTokens, ",");
 
         for(int j=0;j<instancia->n;j++){
-            instancia->comprimentos[j]= stoi(comprTokens.at(j));
+            instancia->lengths[j]= stoi(comprTokens.at(j));
         }
 
-        //Importando demandas
-        instancia->alocarDemandas();
+        //Importando demands
+        instancia->buildDemands();
 
         for(int j=0;j<instancia->n;j++){
             getline(fileStream,linha);
             vector<string> demTokens;
-            tokenize(linha, demTokens, " ");
+            tokenize(linha, demTokens, ",");
             for(int k=0;k<instancia->n;k++){
-                instancia->demandas[j][k]=stoi(demTokens[k]);
+                instancia->demands[j][k]=stoi(demTokens[k]);
+            }
+        }
+
+        //verificando consistência
+        for(int i=0;i<instancia->n;i++){
+            for(int j=0;j<instancia->n;j++){
+                if(instancia->demands[i][j] != instancia->demands[j][i]){
+                    cout<<"Erro de sincronia das demands"<<endl;
+                    exit(100);
+                }
             }
         }
 
@@ -88,6 +98,16 @@ void Search::iniciarPosTeste() {
 
     sentence ="./PosTest/Resultado";
     ofstream saida(sentence.c_str());
+
+    sentence = "./PosTest/toLatex";
+    ofstream toLatex(sentence.c_str());
+
+    vector<string> latexBestStrs;
+    vector<string> latexAvgStrs;
+    for(int i=0;i<this->instancias.size();i++){
+        latexBestStrs.push_back(this->instancias.at(i).name);
+        latexAvgStrs.push_back(this->instancias.at(i).name);
+    }
 
     //Gerando sementes. Uma pra cada execução
     vector<int> sementes;
@@ -114,7 +134,7 @@ void Search::iniciarPosTeste() {
         saida<<"Individuos_Instancia_"+strInstancia<<endl;
 
         //Pra cada individuo
-        for(int i=0;i<10;i++){
+        for(int i=0;i<1;i++){
             getline(fileIndividuos, strIndividuo);
             cout<<"Individuo "+strIndividuo<<endl;
             saida<<strIndividuo<<endl;
@@ -138,7 +158,7 @@ void Search::iniciarPosTeste() {
 
             //pra cada instancia
             for(int j=0;j<this->instancias.size();j++) {
-                strSaida=this->instancias.at(j).nome;
+                strSaida=this->instancias.at(j).name;
                 //Executar 30 vezes
                 mediaSolucao=0;
                 mediaTempo=0;
@@ -167,16 +187,27 @@ void Search::iniciarPosTeste() {
                 }
                 mediaTempo/=30.0;
                 mediaSolucao/=30.0;
-                strSaida+= to_string(melhorSolucao)+";"+ to_string(mediaSolucao)+";"+ to_string(mediaTempo);
+                strSaida+= " bS: "+to_string(melhorSolucao)+"; aS: "+ to_string(mediaSolucao)+"; aT: "+ to_string(mediaTempo);
                 saida<<strSaida<<endl;
 
-                cout<<this->instancias.at(j).nome+"- bS:"+ to_string(melhorSolucao)+"; aS:"<<to_string(mediaSolucao)<<"; aT:"<<to_string(mediaTempo)<<endl;
+                latexBestStrs.at(j)+=" & "+ to_string(melhorSolucao);
+                latexAvgStrs.at(j)+=" & "+ to_string(mediaSolucao);
+
+                cout << this->instancias.at(j).name + "- bS:" + to_string(melhorSolucao) + "; aS:" << to_string(mediaSolucao) << "; aT:" << to_string(mediaTempo) << endl;
 
             }
         }
 
     }
 
+    for(int i=0;i<this->instancias.size();i++){
+        toLatex<<latexBestStrs.at(i);
+    }
+        toLatex<<endl<<endl;
+
+    for(int i=0;i<this->instancias.size();i++){
+        toLatex<<latexAvgStrs.at(i);
+    }
 
     fileIndividuos.close();
     delete[] solucao;
@@ -191,51 +222,51 @@ void Search::inciar() {
     cout<<"-------Criando população inicial"<<endl;
 
     this->criarPopulacaoInicial();
-    avaliarPopulacao(0, this->conf->tamPop, 0);
-    stable_sort(this->populacao, this->populacao + conf->tamPop, sortPopulationFitness);
+    avaliarPopulacao(0, this->conf->popSize, 0);
+    stable_sort(this->populacao, this->populacao + conf->popSize, sortPopulationFitness);
 
     cout<<"--------População Inicial Criada."<<endl;
 
-    relatorioGeracoes->imprimirResultado(this->populacao, this->conf->tamPop, 0, this->conf->sementeGeracao);
+    relatorioGeracoes->imprimirResultado(this->populacao, this->conf->popSize, 0, this->conf->seed);
 
     double tempoGeracao;
     cout<<"Iniciando gerações:"<<endl;
-    for(int it=1; it<this->conf->geracoes; it++){
+    for(int it=1; it<this->conf->generations; it++){
         clock_t time=clock();
-        this->conf->sementeGeracao=clock();
-        cout << "--------Geração " + to_string(it) + ", Semente: " + to_string(this->conf->sementeGeracao) + " :" << endl;
+        this->conf->seed=clock();
+        cout << "--------Geração " + to_string(it) + ", Semente: " + to_string(this->conf->seed) + " :" << endl;
 
         operate();
 
-        avaliarPopulacao(this->conf->tamPop, this->conf->tamPop * 2, it);
+        avaliarPopulacao(this->conf->popSize, this->conf->popSize * 2, it);
 
-        stable_sort(this->populacao + this->conf->tamPop, this->populacao + this-> conf->tamPop * 2, sortPopulationFitness);
+        stable_sort(this->populacao + this->conf->popSize, this->populacao + this-> conf->popSize * 2, sortPopulationFitness);
 
 
         replace();
-        stable_sort(this->populacao, this->populacao + this->conf->tamPop * 2, sortPopulationFitness);
+        stable_sort(this->populacao, this->populacao + this->conf->popSize * 2, sortPopulationFitness);
 
-        for(int i = this->conf->tamPop; i < this->conf->tamPop * 2; i++){
+        for(int i = this->conf->popSize; i < this->conf->popSize * 2; i++){
             delete this->populacao[i];
         }
 
         time=clock()-time;
         cout<<"--------Fim da Geração "+to_string(it)+" em "+ to_string((double)time/CLOCKS_PER_SEC)+" s."<<endl<<endl;
-        relatorioGeracoes->imprimirResultado(this->populacao, this->conf->tamPop, it, this->conf->sementeGeracao);
+        relatorioGeracoes->imprimirResultado(this->populacao, this->conf->popSize, it, this->conf->seed);
     }
 }
 
 void Search::replace() {
-    for(int i = this->conf->tamPop * this->conf->elitismo, j = this->conf->tamPop; i < this->conf->tamPop; i++, j++) {
+    for(int i = this->conf->popSize * this->conf->elitism, j = this->conf->popSize; i < this->conf->popSize; i++, j++) {
         swap(this->populacao[i], this->populacao[j]);
     }
 }
 //Realização de cruamemento e mutação
 void Search::operate() {
-    int numIndividuos=this->conf->numParentais;
+    int numIndividuos=this->conf->numParents;
     Individuo ** selecionados;
 
-    for(int i=this->conf->tamPop; i < this->conf->tamPop * 2; i+=numIndividuos){
+    for(int i=this->conf->popSize; i < this->conf->popSize * 2; i+=numIndividuos){
 
 
         selecionados = new Individuo *[numIndividuos];
@@ -257,14 +288,14 @@ void Search::operate() {
 }
 //Operação de mutação
 void Search::mutate(Individuo **selecionados) {
-    for(int i=0;i<conf->numParentais; i++){
-        if(rand()%101< this->conf->taxaMutacao * 100){
+    for(int i=0;i<conf->numParents; i++){
+        if(rand()%101< this->conf->mutationRate * 100){
             auxMutate(selecionados[i]->tree);
         }
     }
 
 }
-void Search::auxMutate(Arvore *t) {
+void Search::auxMutate(Tree *t) {
     No* n = t->subTree();
     n->erase();
     this->grammar->derivate(n);
@@ -272,10 +303,10 @@ void Search::auxMutate(Arvore *t) {
 }
 //Operação de crossover
 void Search::crossover(Individuo **selecionados) {
-    int numIndividuos=this->conf->numParentais;
+    int numIndividuos=this->conf->numParents;
 
     for(int i=1;i<numIndividuos;i+=2){
-        if(rand()%101< this->conf->taxaCrossover * 100){
+        if(rand()%101< this->conf->crossoverRate * 100){
             treeCrossover(selecionados[i-1]->tree,selecionados[i]->tree);
 
         }
@@ -283,7 +314,7 @@ void Search::crossover(Individuo **selecionados) {
 
 }
 
-void Search::treeCrossover(Arvore *a, Arvore *b) {
+void Search::treeCrossover(Tree *a, Tree *b) {
     No* n = a->subTree();
     No* m = b->targetSubTree(n);
 
@@ -300,12 +331,12 @@ void Search::treeCrossover(Arvore *a, Arvore *b) {
 //Sorteia os pais
 void Search::randPais(Individuo **pais, int ind) {
 
-    for(int i=0;i<this->conf->numParentais; i+=2) {
-        int x = rand() % this->conf->tamPop;
-        int y = rand() % this->conf->tamPop;
+    for(int i=0;i<this->conf->numParents; i+=2) {
+        int x = rand() % this->conf->popSize;
+        int y = rand() % this->conf->popSize;
 
         while (x == y) {
-            y = rand() % this->conf->tamPop;
+            y = rand() % this->conf->popSize;
         }
 
         pais[i]=this->populacao[x]->clone();
@@ -320,7 +351,7 @@ void Search::randPais(Individuo **pais, int ind) {
 }
 void Search::gerarSolucoesIniciais() {
     for(int i=0;i<this->instancias.size();i++){
-        this->instancias[i].gerarSolucaoInicial();
+        this->instancias[i].buildInitialSolution();
     }
 }
 void Search::exportarResultadoIndividuo(int index) {
@@ -349,16 +380,16 @@ void Search::exportarIndividuo(int index) {
 //Criação da população inicial
 void Search::criarPopulacaoInicial() {
 
-    this->populacao= new Individuo *[this->conf->tamPop * 2];
+    this->populacao= new Individuo *[this->conf->popSize * 2];
 
-    for(int i=0;i<this->conf->tamPop; i++){
+    for(int i=0;i<this->conf->popSize; i++){
         this->populacao[i] = new Individuo(true, this->conf, this->grammar);
     }
 }
 //Avalia a população
 void Search::avaliarPopulacao(int initialIndex, int finalIndex, int generation) {
 
-    this->conf->sementeGeracao=clock();
+    this->conf->seed=clock();
     gerarSolucoesIniciais();
     //Executando
     for(int i=initialIndex;i<finalIndex;i++){
@@ -392,7 +423,7 @@ void Search::avaliarIndividuo(int index) {
 
         //Executando
         Arena* arena=new Arena(&this->instancias.at(i));
-        srand(this->conf->sementeGeracao);
+        srand(this->conf->seed);
 
         clock_t time= clock();
         arena->go(&individuoTokenizado);
@@ -400,7 +431,7 @@ void Search::avaliarIndividuo(int index) {
 
         //Armazenando resultados
         solucoes[i]=arena->fo;
-        litSol=this->instancias.at(i).litSol;
+        litSol=this->instancias.at(i).literatureCost;
         tempos[i]=(double)time/CLOCKS_PER_SEC;
 
         //Atualizando fitness

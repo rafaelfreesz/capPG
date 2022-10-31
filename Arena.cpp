@@ -3,7 +3,7 @@
 //
 #include "Arena.h"
 
-Arena::Arena(Instancia *instancia) {
+Arena::Arena(Instance *instancia) {
 
     this->instancia=instancia;
     this->p=0;
@@ -96,11 +96,11 @@ void Arena::interpretar(vector<string> *individuoLinear) {
 void Arena::importarSolucao() {
 
     for(int i=0;i<this->instancia->n;i++){
-        this->corredor[i]=this->instancia->corredor[i];
+        this->corredor[i]=this->instancia->corridor[i];
         this->abcissas[i]=this->instancia->abcissas[i];
     }
-    this->p=this->instancia->particao;
-    this->fo=this->instancia->funcaoObjetivo;
+    this->p=this->instancia->partition;
+    this->fo=this->instancia->cost;
 
 }
 void Arena::montarAbcissas() {
@@ -115,7 +115,7 @@ void Arena::montarAbcissas() {
         }
 
         sala=this->corredor[i];
-        comp=this->instancia->comprimentos[sala];
+        comp=this->instancia->lengths[sala];
         this->abcissas[sala]=tamLado+(float)comp/2;
         tamLado+=comp;
     }
@@ -128,7 +128,7 @@ void Arena::calcularCusto() {
         for(int j=i+1;j<this->n;j++){
             int salaJ=this->corredor[j];
             float distancia=abs(abcissas[salaJ]-abcissas[salaI]);
-            float custoLocal=distancia*(float)this->instancia->demandas[salaI][salaJ];
+            float custoLocal=distancia*(float)this->instancia->demands[salaI][salaJ];
             this->fo+=custoLocal;
         }
     }

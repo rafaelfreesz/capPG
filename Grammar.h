@@ -2,15 +2,15 @@
 // Created by rafael on 21/02/2022.
 //
 
-#ifndef CAPHH_GRAMATICA_H
-#define CAPHH_GRAMATICA_H
+#ifndef CAPHH_GRAMMAR_H
+#define CAPHH_GRAMMAR_H
 #include <tuple>
 #include <vector>
 #include <fstream>
 #include <iostream>
 #include <math.h>
 #include <algorithm>
-#include "Configuracoes.h"
+#include "Configures.h"
 #include "No.h"
 #define INFINT 2147483647
 using namespace std;
@@ -24,18 +24,18 @@ public:
     bool visited;
     int high;
 
-    Node(){this->visited=false; this->high=-1;}
+    Node(){ this->visited=false; this->high=-1;}
 };
 
-class Gramatica {
+class Grammar {
 public:
-    Gramatica(string gram, Configuracoes* conf);
-    virtual ~Gramatica();
+    Grammar(string gram, Configures* conf);
+    virtual ~Grammar();
 
-    vector<Node*> gramatica;
-    vector<string> naoTerminais;
-    vector<vector<string>> terminais;
-    Configuracoes* conf;
+    vector<Node*> grammar;
+    vector<string> nonTerminals;
+    vector<vector<string>> terminals;
+    Configures* conf;
 
     void tokenize(string str, vector<string> &token_v, string DELIMITER);
     void makeTerminals();
@@ -48,12 +48,11 @@ public:
     void high2();
     static bool sortNode(Node* a, Node* b);
     int derivate(No* n);
-    int criarPopulacaoInicial(No* n, int deep);
+    int buildInitialPopulation(No* n, int deep);
 
     void printGrammar();
-    void printProductions(Node* nonTerminalNode);
     void printTerminals();
 };
 
 
-#endif //CAPHH_GRAMATICA_H
+#endif //CAPHH_GRAMMAR_H
